@@ -3,8 +3,11 @@ php:
   - "5.4"
 
 env:
-  - CORE_BRANCH=stable6
   - CORE_BRANCH=stable7
+
+branches:
+ only:
+ - robot-rewrite
 
 before_install:
 - sudo apt-get update
