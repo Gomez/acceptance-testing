@@ -10,7 +10,7 @@ ${OWNCLOUD_URL}  http://localhost
 
 *** Test Cases ***
 
-In order to protect data in my cloud instance
+In order to protect data in my cloud instance i need to login
     Given I am not logged in
     When I'm logged in as an admin
     Then I should be able to access my cloud
