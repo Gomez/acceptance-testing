@@ -3,6 +3,7 @@ php:
 - '5.4'
 env:
   global:
+  - CORE_BRANCH=stable7
   - ARTIFACTS_S3_BUCKET=my-travis-builds
   - secure: l65XBDGSD2m2HIVJTLhjqiQHjNHN/rtDGFTUWso8j21Cy07tJKc3tjHoFQbEmLN0SbPoC38qM2qyif9eYgANzlTHjmpFvimBJSZIXUdWk3q0S0SToI516yswVlPiwVnOvGyYTWFw3IgRqYtuw7ci0xRirtZ9hyFRk5DdhrTe48I=
   - secure: svyXqkT2yqsZYBj9ex/xfstXiesKj+B+sS2j1QQGpzPk2h0o2/PrPHOOMXtDbhrZJ8IhKUxXwj1fUGx94Ww5p+G73+82Zhs2x1GqlEi3gj+IBgbNOC4x26vGPFUXLTl8OIx6cRW3QpFDz6MHlhQWM069j/2L5wZQt0qgEGf6qNg=
