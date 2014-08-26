@@ -10,11 +10,11 @@ env:
   - secure: svyXqkT2yqsZYBj9ex/xfstXiesKj+B+sS2j1QQGpzPk2h0o2/PrPHOOMXtDbhrZJ8IhKUxXwj1fUGx94Ww5p+G73+82Zhs2x1GqlEi3gj+IBgbNOC4x26vGPFUXLTl8OIx6cRW3QpFDz6MHlhQWM069j/2L5wZQt0qgEGf6qNg=
   #saucelabs integration
   - ROBOT_BUILD_NUMBER=travis-$TRAVIS_BUILD_NUMBER
-    - ROBOT_REMOTE_URL=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com:80/wd/hub
-    matrix:
-    - ROBOT_BROWSER=firefox ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
-    - ROBOT_BROWSER=ie ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
-    - ROBOT_DESIRED_CAPABILITIES="platform:OS X 10.8,browserName:iPad,version:6,tunnel-identifier:$TRAVIS_JOB_ID"
+  - ROBOT_REMOTE_URL=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com:80/wd/hub
+  matrix:
+  - ROBOT_BROWSER=firefox ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
+  - ROBOT_BROWSER=ie ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
+  - ROBOT_DESIRED_CAPABILITIES="platform:OS X 10.8,browserName:iPad,version:6,tunnel-identifier:$TRAVIS_JOB_ID"
 addons:
   sauce_connect:
   - username: gomez
