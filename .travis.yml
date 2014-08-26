@@ -17,9 +17,9 @@ env:
   - ROBOT_DESIRED_CAPABILITIES="platform:OS X 10.8,browserName:iPad,version:6,tunnel-identifier:$TRAVIS_JOB_ID"
 addons:
   sauce_connect:
-  - username: gomez
+  - username: owncloud
   - access_key:
-      secure: jTMeeHdwhCysvV9lIgwUIbbqRBSxKDy1RBqnR38au4x1PQUU9grJpQUaNKCf5l/PNZ2z63EFgWRISR1rJDno32K1W624drwxrSvhjxFGgmcLyMQfyURD9Wkn7bZHc+5DwvkJFYC1sShp0EnV7rJuldKbLaU2Dsrui2gOyFt1l30=
+      secure: tjFF8YW/LYYP9DbZVjPvEs7fp2a4K8qatOL8gAcvvWc+/vXqCPgAT3xDwDearTi4fOC3NkkrL1oncYjRFjWSFXHGSBh3m0jGaiBiHHzl5yYy5pHmuwcjoCkn2sXxu3IIDaC7b/qBm6Lwgn1poyZUBPgLjOjjemy+TEVSwLx53vs=
 branches:
   only:
   - robot-rewrite
