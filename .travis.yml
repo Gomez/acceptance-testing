@@ -4,21 +4,9 @@ php:
 env:
   global:
   - CORE_BRANCH=stable7
-  # Upload to s3
   - ARTIFACTS_S3_BUCKET=my-travis-builds
   - secure: l65XBDGSD2m2HIVJTLhjqiQHjNHN/rtDGFTUWso8j21Cy07tJKc3tjHoFQbEmLN0SbPoC38qM2qyif9eYgANzlTHjmpFvimBJSZIXUdWk3q0S0SToI516yswVlPiwVnOvGyYTWFw3IgRqYtuw7ci0xRirtZ9hyFRk5DdhrTe48I=
   - secure: svyXqkT2yqsZYBj9ex/xfstXiesKj+B+sS2j1QQGpzPk2h0o2/PrPHOOMXtDbhrZJ8IhKUxXwj1fUGx94Ww5p+G73+82Zhs2x1GqlEi3gj+IBgbNOC4x26vGPFUXLTl8OIx6cRW3QpFDz6MHlhQWM069j/2L5wZQt0qgEGf6qNg=
-  #saucelabs integration
-  - secure: "WI7/OfbG4iEOi9BblYNgwCKX6MYdub/4T9IPMGv+LG5EkPoJ3wZto5Uvi9aHPsHtEd1LMbqAUmq8gF/SAU1M63Onk1+pLM12kVSLHa3Fn9YVSTZtYM/dBne9pFeJCqV6Z4lg/wd5k0LiIg+Qjk/X6blnvZbM7e0byD1Fc3rEU7c="
-  - secure: "sKIt5F06wFn4g69R/XmBgQ2mfJ1V2oztDLsJyyEyToiHaAf3LAAVD4LT5dUEBIW9kb8+4nIAyzGT3hAJb3RCW/6+rFrGWijsjT/xgnvUvpXE8hbwJPqwG7yoe/mI4uYiHASzUnif9ijupn2zweG+FexGNuUIEnvYVdZhSz8ZMjU="
-  - ROBOT_BUILD_NUMBER=travis-$TRAVIS_BUILD_NUMBER
-  - ROBOT_REMOTE_URL=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com:80/wd/hub
-  matrix:
-  - ROBOT_BROWSER=firefox ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
-  - ROBOT_BROWSER=ie ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
-  - ROBOT_DESIRED_CAPABILITIES="platform:OS X 10.8,browserName:iPad,version:6,tunnel-identifier:$TRAVIS_JOB_ID"
-addons:
-  sauce_connect: true
 branches:
   only:
   - robot-rewrite
@@ -27,13 +15,6 @@ before_install:
 - mkdir -p buildout-cache/downloads
 - python bootstrap.py
 - bin/buildout -N -t 3
-#saucelabs integration
-- curl -O http://saucelabs.com/downloads/Sauce-Connect-latest.zip
-- unzip Sauce-Connect-latest.zip
-- java -jar Sauce-Connect.jar $SAUCE_USERNAME $SAUCE_ACCESS_KEY -i $TRAVIS_JOB_ID
-  -f CONNECTED &
-- JAVA_PID=$!
-# Apache install
 - sudo apt-get install apache2 libapache2-mod-fastcgi
 - bash travis-build/install_oc.sh $CORE_BRANCH
 - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv
@@ -44,16 +25,12 @@ before_install:
 - sudo cp -f travis-build/travis-ci-apache /etc/apache2/sites-available/default
 - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
 - sudo service apache2 restart
-# Place for logs
 - mkdir -p parts/test/
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - gem install travis-artifacts
-- bash -c "while [ ! -f CONNECTED ]; do sleep 2; done"
 after_script:
-- kill $JAVA_PID
-# Upload logs
 - travis-artifacts upload --path parts/test
 script:
 - ./bin/pybot -d parts/test tests
