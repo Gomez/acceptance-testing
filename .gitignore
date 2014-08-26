@@ -1,3 +1,7 @@
+.installed.cfg
+bin/
+include/
+lib/
 .bundle
 .idea
 logs
