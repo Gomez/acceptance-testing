@@ -1,12 +1,10 @@
 *** Settings ***
 
+Variables  variables.py
 Resource  common.robot
 
 *** Variables ***
 
-${ADMIN_USER}  admin
-${ADMIN_PASSWORD}  admin
-${OWNCLOUD_URL}  http://localhost
 
 *** Test Cases ***
 

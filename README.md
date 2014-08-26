@@ -28,9 +28,9 @@ regular base.
 
 ##Running tests in your test environment
 
-Before executing the tests, you need to add your test environment URL to the common.robot, like:
+The tests get normally executed against http://localhost, this can be overriden from the cli:
 
-    $ Open browser  http://localhost/localdev_oc7/htdocs/
+    $ bin/pybot --variable OWNCLOUD_URL:http://localhost/mypath/owncloud/ tests/
 
 Robotframework expects to find the following environment:
 
@@ -47,10 +47,6 @@ Robotframework expects to find the following environment:
 To execute the tests run
 
     $ bin/pybot tests
-
-Run single feature:
-
-    $ bin/pybot tests/test.login.robot
 
 
 #Extending the test suite
