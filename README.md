@@ -2,7 +2,7 @@
 
 ##Preparing your system
 
-For running the acceptance tests you need Python 2.7 (other versions not tested) installed. If you do not want pollute your
+For running the acceptance tests you need Python 2.7 (other versions not tested). If you do not want pollute your
 system-wide Python, install virtualenv and activate it.
 
 After installing python, bootstrap this rep:
