@@ -9,6 +9,8 @@ env:
   - secure: l65XBDGSD2m2HIVJTLhjqiQHjNHN/rtDGFTUWso8j21Cy07tJKc3tjHoFQbEmLN0SbPoC38qM2qyif9eYgANzlTHjmpFvimBJSZIXUdWk3q0S0SToI516yswVlPiwVnOvGyYTWFw3IgRqYtuw7ci0xRirtZ9hyFRk5DdhrTe48I=
   - secure: svyXqkT2yqsZYBj9ex/xfstXiesKj+B+sS2j1QQGpzPk2h0o2/PrPHOOMXtDbhrZJ8IhKUxXwj1fUGx94Ww5p+G73+82Zhs2x1GqlEi3gj+IBgbNOC4x26vGPFUXLTl8OIx6cRW3QpFDz6MHlhQWM069j/2L5wZQt0qgEGf6qNg=
   #saucelabs integration
+  - secure: "WI7/OfbG4iEOi9BblYNgwCKX6MYdub/4T9IPMGv+LG5EkPoJ3wZto5Uvi9aHPsHtEd1LMbqAUmq8gF/SAU1M63Onk1+pLM12kVSLHa3Fn9YVSTZtYM/dBne9pFeJCqV6Z4lg/wd5k0LiIg+Qjk/X6blnvZbM7e0byD1Fc3rEU7c="
+  - secure: "sKIt5F06wFn4g69R/XmBgQ2mfJ1V2oztDLsJyyEyToiHaAf3LAAVD4LT5dUEBIW9kb8+4nIAyzGT3hAJb3RCW/6+rFrGWijsjT/xgnvUvpXE8hbwJPqwG7yoe/mI4uYiHASzUnif9ijupn2zweG+FexGNuUIEnvYVdZhSz8ZMjU="
   - ROBOT_BUILD_NUMBER=travis-$TRAVIS_BUILD_NUMBER
   - ROBOT_REMOTE_URL=http://$SAUCE_USERNAME:$SAUCE_ACCESS_KEY@ondemand.saucelabs.com:80/wd/hub
   matrix:
@@ -16,10 +18,7 @@ env:
   - ROBOT_BROWSER=ie ROBOT_DESIRED_CAPABILITIES=tunnel-identifier:$TRAVIS_JOB_ID
   - ROBOT_DESIRED_CAPABILITIES="platform:OS X 10.8,browserName:iPad,version:6,tunnel-identifier:$TRAVIS_JOB_ID"
 addons:
-  sauce_connect:
-  - username: owncloud
-  - access_key:
-      secure: tjFF8YW/LYYP9DbZVjPvEs7fp2a4K8qatOL8gAcvvWc+/vXqCPgAT3xDwDearTi4fOC3NkkrL1oncYjRFjWSFXHGSBh3m0jGaiBiHHzl5yYy5pHmuwcjoCkn2sXxu3IIDaC7b/qBm6Lwgn1poyZUBPgLjOjjemy+TEVSwLx53vs=
+  sauce_connect: true
 branches:
   only:
   - robot-rewrite
