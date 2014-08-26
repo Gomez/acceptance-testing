@@ -1,6 +1,6 @@
 #Acceptance Testing For OwnCloud
 
-.. image:: https://travis-ci.org/Gomez/acceptance-testing.svg?branch=robot-rewrite
+[![Build Status](https://travis-ci.org/Gomez/acceptance-testing.svg?branch=robot-rewrite)](https://travis-ci.org/Gomez/acceptance-testing)
 
 ##Preparing your system
 
