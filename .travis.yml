@@ -1,14 +1,14 @@
 language: php
 php:
-  - "5.4"
-
+- '5.4'
 env:
-  - CORE_BRANCH=stable7
-
+  global:
+  - ARTIFACTS_S3_BUCKET=my-travis-builds
+  - secure: l65XBDGSD2m2HIVJTLhjqiQHjNHN/rtDGFTUWso8j21Cy07tJKc3tjHoFQbEmLN0SbPoC38qM2qyif9eYgANzlTHjmpFvimBJSZIXUdWk3q0S0SToI516yswVlPiwVnOvGyYTWFw3IgRqYtuw7ci0xRirtZ9hyFRk5DdhrTe48I=
+  - secure: svyXqkT2yqsZYBj9ex/xfstXiesKj+B+sS2j1QQGpzPk2h0o2/PrPHOOMXtDbhrZJ8IhKUxXwj1fUGx94Ww5p+G73+82Zhs2x1GqlEi3gj+IBgbNOC4x26vGPFUXLTl8OIx6cRW3QpFDz6MHlhQWM069j/2L5wZQt0qgEGf6qNg=
 branches:
- only:
- - robot-rewrite
-
+  only:
+  - robot-rewrite
 before_install:
 - sudo apt-get update
 - mkdir -p buildout-cache/downloads
@@ -16,22 +16,19 @@ before_install:
 - bin/buildout -N -t 3
 - sudo apt-get install apache2 libapache2-mod-fastcgi
 - bash travis-build/install_oc.sh $CORE_BRANCH
-# enable php-fpm
-- sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+- sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv
+  version-name)/etc/php-fpm.conf
 - sudo a2enmod rewrite actions fastcgi alias
 - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
-# configure apache virtual hosts
 - sudo cp -f travis-build/travis-ci-apache /etc/apache2/sites-available/default
 - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
 - sudo service apache2 restart
-
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-
+- gem install travis-artifacts
+after_script:
+- travis-artifacts upload --path parts/test
 script:
-  # execute unit tests
-  - ./bin/pybot tests
-
-
+- ./bin/pybot tests
