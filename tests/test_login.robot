@@ -6,7 +6,6 @@ Resource  common.robot
 
 ${ADMIN_USER}  admin
 ${ADMIN_PASSWORD}  admin
-${OWNCLOUD_URL}  http://localhost
 
 *** Test Cases ***
 

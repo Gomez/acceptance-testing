@@ -2,6 +2,6 @@
 
 Resource  common.robot
 
-Test Setup  Start app and open browser
+Test Setup  Start browser
 Test Teardown  Stop app and close all browsers
 
